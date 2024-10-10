@@ -4,16 +4,18 @@ import axios from 'axios';
 
 function UserList() {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:3001/users')
       .then(response => setUsers(response.data))
-      .catch(error => console.error('Error fetching users:', error));
+      .catch(error => setError(error.message));
   }, []);
 
   return (
     <div>
       <h2>User List</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
         {users.map(user => (
           <li key={user._id}>{user.name} - {user.email}</li>

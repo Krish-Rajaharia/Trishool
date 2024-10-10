@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3001';
 
 const login = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/users/login`, userData);
+    const response = await axios.post(`${API_URL}/login`, userData);
     return response.data;
   } catch (error) {
     throw error;
@@ -14,7 +14,7 @@ const login = async (userData) => {
 
 const register = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/users/register`, userData);
+    const response = await axios.post(`${API_URL}/register`, userData);
     return response.data;
   } catch (error) {
     throw error;
@@ -22,13 +22,19 @@ const register = async (userData) => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem('user'));
+  const token = localStorage.getItem('token');
+  return token ? JSON.parse(token) : null;
+};
+
+const logout = () => {
+  localStorage.removeItem('token');
 };
 
 const authService = {
   login,
   register,
   getCurrentUser,
+  logout,
 };
 
 export default authService;

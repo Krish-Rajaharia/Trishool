@@ -1,6 +1,6 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,21 +10,27 @@ import Equipment from './pages/Equipment';
 import Login from './components/Login';
 import Register from './components/Register';
 import ProtectedRoute from './components/ProtectedRoute';
+import CreateIncident from './components/CreateIncident';
+import CreateEquipment from './components/CreateEquipment';
+import { UserContext } from './UserContext';
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <ProtectedRoute path="/users" component={Users} />
-        <ProtectedRoute path="/incidents" component={Incidents} />
-        <ProtectedRoute path="/equipment" component={Equipment} />
-        <Redirect to="/login" /> {/* Redirect unauthorized users to login */}
-      </Switch>
-      <Footer />
+      <UserContext.Provider value={{ currentUser: null }}>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
+          <Route path="/incidents" element={<ProtectedRoute><Incidents /></ProtectedRoute>} />
+          <Route path="/equipment" element={<ProtectedRoute><Equipment /></ProtectedRoute>} />
+          <Route path="/incidents/create" element={<ProtectedRoute><CreateIncident /></ProtectedRoute>} />
+          <Route path="/equipment/create" element={<ProtectedRoute><CreateEquipment /></ProtectedRoute>} />
+        </Routes>
+        <Footer />
+      </UserContext.Provider>
     </Router>
   );
 }
