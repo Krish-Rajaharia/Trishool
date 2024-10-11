@@ -16,27 +16,32 @@ import IncidentManagement from './components/IncidentManagement';
 import EquipmentManagement from './components/EquipmentManagement';
 import UserManagement from './components/UserManagement';
 import { UserContext } from './UserContext';
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <UserContext.Provider value={{ currentUser: null }}>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
-          <Route path="/incidents" element={<ProtectedRoute><Incidents /></ProtectedRoute>} />
-          <Route path="/equipment" element={<ProtectedRoute><Equipment /></ProtectedRoute>} />
-          <Route path="/incidents/create" element={<ProtectedRoute><CreateIncident /></ProtectedRoute>} />
-          <Route path="/equipment/create" element={<ProtectedRoute><CreateEquipment /></ProtectedRoute>} />
-          <Route path="/incident-management" element={<ProtectedRoute><IncidentManagement /></ProtectedRoute>} />
-          <Route path="/equipment-management" element={<ProtectedRoute><EquipmentManagement /></ProtectedRoute>} />
-          <Route path="/user-management" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
-        </Routes>
-        <Footer />
-      </UserContext.Provider>
+      <div className="App">
+        <UserContext.Provider value={{ currentUser: null }}>
+          <Header />
+          <main>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
+              <Route path="/incidents" element={<ProtectedRoute><Incidents /></ProtectedRoute>} />
+              <Route path="/equipment" element={<ProtectedRoute><Equipment /></ProtectedRoute>} />
+              <Route path="/incidents/create" element={<ProtectedRoute><CreateIncident /></ProtectedRoute>} />
+              <Route path="/equipment/create" element={<ProtectedRoute><CreateEquipment /></ProtectedRoute>} />
+              <Route path="/incident-management" element={<ProtectedRoute><IncidentManagement /></ProtectedRoute>} />
+              <Route path="/equipment-management" element={<ProtectedRoute><EquipmentManagement /></ProtectedRoute>} />
+              <Route path="/user-management" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
+            </Routes>
+          </main>
+          <Footer />
+        </UserContext.Provider>
+      </div>
     </Router>
   );
 }
