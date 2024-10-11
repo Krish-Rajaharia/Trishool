@@ -12,6 +12,9 @@ import Register from './components/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreateIncident from './components/CreateIncident';
 import CreateEquipment from './components/CreateEquipment';
+import IncidentManagement from './components/IncidentManagement';
+import EquipmentManagement from './components/EquipmentManagement';
+import UserManagement from './components/UserManagement';
 import { UserContext } from './UserContext';
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
           <Route path="/equipment" element={<ProtectedRoute><Equipment /></ProtectedRoute>} />
           <Route path="/incidents/create" element={<ProtectedRoute><CreateIncident /></ProtectedRoute>} />
           <Route path="/equipment/create" element={<ProtectedRoute><CreateEquipment /></ProtectedRoute>} />
+          <Route path="/incident-management" element={<ProtectedRoute><IncidentManagement /></ProtectedRoute>} />
+          <Route path="/equipment-management" element={<ProtectedRoute><EquipmentManagement /></ProtectedRoute>} />
+          <Route path="/user-management" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </UserContext.Provider>

@@ -1,41 +1,53 @@
+/* src/components/Header.module.css */
 .header {
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 20px 0;
 }
 
-.header .container {
+.container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header h1 {
-  margin: 0;
-}
-
-.header h1 a {
+.title {
   color: #fff;
   text-decoration: none;
+  font-size: 1.5em;
 }
 
-.header nav ul {
-  list-style: none;
+.nav ul {
+  list-style-type: none;
   padding: 0;
+  margin: 0;
   display: flex;
 }
 
-.header nav li {
+.nav li {
   margin-left: 20px;
 }
 
-.header nav a {
+.link {
   color: #fff;
   text-decoration: none;
 }
 
-.header nav a:hover {
+.link:hover {
+  color: #ccc;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+}
+
+.logoutBtn:hover {
   color: #ccc;
 }
